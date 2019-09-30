@@ -50,6 +50,19 @@ The Style Guide page has now moved to:
 
 [https://nim-lang.org/docs/nep1.html](https://nim-lang.org/docs/nep1.html)
 
+### Section 2.2.3
+
+#### page 38
+
+```
+doAssert getUserCity("Damien", "Lundi") == "Tokyo"
+doAssert getUserCity(2) == "New York
+```
+
+It might be confusing to see that the book uses `assert` for previous code snippets but for this one, suddenly switches to `doAssert`.
+
+The different between `assert` and `doAssert`is that `assert` is ignored by the nim compiler when using the `-d:release` or `--assertions:off` command line switches, whereas `doAssert` isn't affected by them. [Source](https://nim-lang.org/docs/assertions.html).
+
 ### Section 2.3.1
 
 #### page 40
@@ -63,17 +76,6 @@ Error: index 5000 not in 0 .. 2
 ```
 
 ### Section 2.3.2
-
-#### page 38
-
-```
-doAssert getUserCity("Damien", "Lundi") == "Tokyo"
-doAssert getUserCity(2) == "New York
-```
-
-It might be confusing to see that the book uses `assert` for previous code snippets but for this one, suddenly switches to `doAssert`.
-
-The different between `assert` and `doAssert`is that `assert` is ignored by the nim compiler when using the `-d:release` or `--assertions:off` command line switches, whereas `doAssert` isn't affected by them. [Source](https://nim-lang.org/docs/assertions.html).
 
 #### page 41
 
