@@ -61,7 +61,7 @@ doAssert getUserCity(2) == "New York
 
 It might be confusing to see that the book uses `assert` for previous code snippets but for this one, suddenly switches to `doAssert`.
 
-The different between `assert` and `doAssert`is that `assert` is ignored by the nim compiler when using the `-d:release` or `--assertions:off` command line switches, whereas `doAssert` isn't affected by them. [Source](https://nim-lang.org/docs/assertions.html).
+The different between `assert` and `doAssert` is that `assert` is ignored by the nim compiler when using the `-d:release` or `--assertions:off` command line switches, whereas `doAssert` isn't affected by them. [Source](https://nim-lang.org/docs/assertions.html). This is also explained later in the book in Chapter 3 (page 76).
 
 ### Section 2.3.1
 
