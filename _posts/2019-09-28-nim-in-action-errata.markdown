@@ -52,7 +52,7 @@ The Style Guide page has now moved to:
 
 ### Section 2.2.3
 
-#### page 38
+#### Page 38
 
 ```
 doAssert getUserCity("Damien", "Lundi") == "Tokyo"
@@ -65,7 +65,7 @@ The different between `assert` and `doAssert` is that `assert` is ignored by the
 
 ### Section 2.3.1
 
-#### page 40
+#### Page 40
 
 > Compilation will fail with “Error: index out of bounds.”
 
@@ -77,7 +77,7 @@ Error: index 5000 not in 0 .. 2
 
 ### Section 2.3.2
 
-#### page 41
+#### Page 41
 
 > “You should see that your program crashes with the following output:
 
@@ -95,7 +95,7 @@ segfault.nim(2) segfault
 Error: unhandled exception: index out of bounds, the container is empty [IndexError]
 ```
 
-#### page 42
+#### Page 42
 
 ```
 assert list[0] == nil
