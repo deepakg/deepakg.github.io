@@ -114,3 +114,31 @@ assert list[0] == ""
 ```
 
 ...works. So strings are now automatically initialised to "" rather than nil.
+
+## Chapter 3
+
+### Listing 3.16
+
+```
+import asyncdispatch, asyncfile
+
+var file = openAsync("/etc/passwd")
+let dataFut = file.readAll()
+dataFut.callback =
+  proc (future: Future[string]) =
+    echo(future.read())
+
+asyncdispatch.runForever()
+```
+
+On macOS 10.13.6 (High Sierra), this ended in a runtime error after the callback finishes displaying the file's content:
+
+```
+/usr/local/Cellar/nim/1.0.0/nim/lib/pure/asyncdispatch.nim(1874) runForever
+/usr/local/Cellar/nim/1.0.0/nim/lib/pure/asyncdispatch.nim(1569) poll
+/usr/local/Cellar/nim/1.0.0/nim/lib/pure/asyncdispatch.nim(1286) runOnce
+Error: unhandled exception: No handles or timers registered in dispatcher. [ValueError]
+Error: execution of an external program failed: '/Users/deepakg/proj/async_file
+```
+
+I still haven't figured out if the author deliberately intended to demonstrate something or if something changed in a version of Nim after the book came out. That said, the next listing (3.17) that uses the `{.async.}` pragma with the `await` keyword works just fine.
