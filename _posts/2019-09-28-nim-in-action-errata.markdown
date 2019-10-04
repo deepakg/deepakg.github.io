@@ -117,6 +117,8 @@ assert list[0] == ""
 
 ## Chapter 3
 
+This chapter covers a *lot* of ground and by the end of it you have a working group chat server and a client that connects to it. I only ran into the follwing trivial issues.
+
 ### Listing 3.16
 
 ```
@@ -142,3 +144,11 @@ Error: execution of an external program failed: '/Users/deepakg/proj/async_file
 ```
 
 I still haven't figured out if the author deliberately intended to demonstrate something or if something changed in a version of Nim after the book came out. That said, the next listing (3.17) that uses the `{.async.}` pragma with the `await` keyword works just fine.
+
+### Section 3.5.3
+
+#### Page 92
+
+> On UNIX-like operating systems such as Linux and Mac OS, the telnet application should be available by default.
+
+On macOS 10.13 (High Sierra) that's not the case. But it's easily remedied by using [brew](https://brew.sh) to install it.
