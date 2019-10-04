@@ -152,3 +152,7 @@ I still haven't figured out if the author deliberately intended to demonstrate s
 > On UNIX-like operating systems such as Linux and Mac OS, the telnet application should be available by default.
 
 On macOS 10.13 (High Sierra) that's not the case. But it's easily remedied by using [brew](https://brew.sh) to install it.
+
+## Chapter 4
+
+I did not find any issues. All listings compiled and ran with Nim 1.0.0 without any problems.
