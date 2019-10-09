@@ -156,3 +156,7 @@ On macOS 10.13 (High Sierra) that's not the case. But it's easily remedied by us
 ## Chapter 4
 
 I did not find any issues. All listings compiled and ran with Nim 1.0.0 without any problems.
+
+## Chapter 5
+
+I did not find any issues. This chapter is about Nim's package manager: Nimble. I was able to follow along and create a toy package and use it. I ignored section 5.7 (publishing a package to github), but it should just work.
