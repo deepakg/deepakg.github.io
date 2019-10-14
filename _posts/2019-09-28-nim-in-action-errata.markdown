@@ -189,4 +189,4 @@ for resp in responses:
   mostPopular = statistic
 ```
 
-The thing that puzzled me a little about this listing was the lack of an explicit `sync()` call (like one in Listing 6.7 on page 157). We spawn multiple threads in a loop to run `parseChunk` but we don't wait and gather their results. Looks like the `for resp in responses` loop a couple of lines below, implicitly waits for each thread to finish before retrieving the result.
+The thing that puzzled me a little about this listing was the lack of an explicit `sync()` call (like one in Listing 6.7 on page 157). We spawn multiple threads in a loop to run `parseChunk` but we don't wait and gather their results. This is because the `for resp in responses` loop a couple of lines below, implicitly waits for each thread to finish when it retrieves the result using `^resp`.
