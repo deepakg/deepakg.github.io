@@ -161,3 +161,32 @@ This chapter is a whirlwind tour of Nim's standard library. I did not find any i
 
 I did not find any issues. This chapter is about Nim's package manager: Nimble. I was able to follow along and create a toy package and use it. I ignored section 5.7 (publishing a package to github), but it should just work.
 
+## Chapter 6
+
+While chapter 3 gave a taste of concurrency in Nim and also touched upon parallelism (`spawn`), this chapter offers a deeper look into parallelism in Nim through its threading capabilities.
+
+### Section 6.2.3
+
+#### Page 159
+
+> The ways exceptions behave in separate threads may be surprising. When a thread crashes with an unhandled exception, the application will crash with it. It doesn’t mat- ter whether you read the value of the FlowVar or not.
+
+>> FUTURE VERSIONS This behavior will change in a future version of Nim, so that exceptions aren’t raised unless you read the value of the FlowVar.
+
+This hasn't changed as of Nim 1.0.0
+
+### Listing 6.20
+
+#### Page 172
+```
+  responses.add(spawn parseChunk(buffer[0 .. <chunkLen])) oldBufferLen = readSize - chunkLen
+  buffer[0 .. <oldBufferLen] = buffer[readSize - oldBufferLen .. ^1]
+
+var mostPopular = newStats()
+for resp in responses:
+  let statistic = ^resp
+  if statistic.countViews > mostPopular.countViews:
+  mostPopular = statistic
+```
+
+The thing that puzzled me a little about this listing was the lack of an explicit `sync()` call (like one in Listing 6.7 on page 157). We spawn multiple threads in a loop to run `parseChunk` but we don't wait and gather their results. Looks like the `for resp in responses` loop a couple of lines below, implicitly waits for each thread to finish before retrieving the result.
