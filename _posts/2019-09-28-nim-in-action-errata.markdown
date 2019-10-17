@@ -190,3 +190,31 @@ for resp in responses:
 ```
 
 The thing that puzzled me a little about this listing was the lack of an explicit `sync()` call (like one in Listing 6.7 on page 157). We spawn multiple threads in a loop to run `parseChunk` but we don't wait for them to finish. This is because the `for resp in responses` loop a couple of lines below, implicitly waits for each thread to finish when it retrieves the result using `^resp`.
+
+### Listing 6.21
+
+#### Page 173
+```
+import threadpool
+
+var counter = 0
+
+proc increment(x: int) =
+  for i in 0 .. <x:
+    var value = counter
+    value.inc
+    counter = value
+
+spawn increment(10_000)
+spawn increment(10_000)
+sync()
+echo(counter)
+```
+
+Now gives a compile-time deprecation warning.
+
+```
+shared_memory_race_condition.nim(6, 17) Warning: < is deprecated [Deprecated]
+```
+
+This is easily fixed by changing `0 .. <x` to `0..<x` in the listing (no space between .. and <). Listing 6.23 and 6.26 have the exact same issue as they build upon listing 6.21.
