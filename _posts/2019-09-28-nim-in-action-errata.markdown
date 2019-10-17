@@ -145,6 +145,25 @@ Error: execution of an external program failed: '/Users/deepakg/proj/async_file
 
 I still haven't figured out if the author deliberately intended to demonstrate something or if something changed in a version of Nim after the book came out. That said, the next listing (3.17) that uses the `{.async.}` pragma with the `await` keyword works just fine.
 
+### Listing 3.17
+
+```
+import asyncdispatch, asyncfile
+
+proc readFiles() {.async.} =
+  var file = openAsync("/home/profile/test.txt", fmReadWrite)
+  let data = await file.readAll()
+  echo(data)
+  await file.write("Hello!\n")
+  file.close()
+
+waitFor readFiles()
+```
+
+It might come as a surprise that the `echo(data)` call never prints anything, even when the file already exists and contains text. Additionally, the file contents are reset to `Hello!` after running the code.
+
+This is because `fmReadWrite` file mode clears the existing data during the `openAsync` call. If you want to preserve and display the file contents, use `fmReadWriteExisting` file mode instead.
+
 ### Section 3.5.3
 
 #### Page 92
