@@ -270,3 +270,66 @@ To avoid cognitive dissonance while following along with the book, here is what 
 - changed the auto-generated line `bin = @["Tweeter"]` to what's in the book, i.e. `bin = @[tweeter]`.
 
 With these changes, I was able to use the nimble command exactly as it is in the book: `nimble c -r src/tweeter` and move forward.
+
+### Listing 7.13
+
+#### Page 196
+
+```
+  database.db.exec(sql"INSERT INTO Message VALUES (?, ?, ?);",
+  	           message.username, $message.time.toSeconds().int, message.msg)
+```
+
+This line now causes a deprecation warning because of the `toSeconds()` method:
+
+```
+src/database.nim(25, 52) Warning: toSeconds is deprecated [Deprecated]
+```
+
+Changing it to `toUnix()` makes it go away:
+
+```
+  database.db.exec(sql"INSERT INTO Message VALUES (?, ?, ?);",
+                   message.username, $message.time.toUnix().int, message.msg)
+```
+
+### Listing 7.14
+
+#### Page 197
+
+Likewise, the corresponding `fromSeconds()` call under the `findMessages` proc:
+
+```
+      result.add(Message(username: row[0],
+      	         time: fromSeconds(row[1].parseInt), msg: row[2]))
+```
+
+needs to change to `fromUnix()`
+
+```
+      result.add(Message(username: row[0],
+                 time: fromUnix(row[1].parseInt), msg: row[2]))
+```
+
+This listing produces another couple of deprecation warnings:
+
+```
+  for i in 0 .. <usernames.len:
+    whereClause.add("username = ? ")
+    if i != <usernames.len:
+      whereClause.add("or ")
+```
+
+```
+src/database.nim(87, 17) Warning: < is deprecated [Deprecated]
+src/database.nim(89, 13) Warning: < is deprecated [Deprecated]
+```
+
+We've already encountered the first one before (listing 6.21), the second one can be addressed by writing the `if i != <usernames.len:` statement a little differently:
+
+```
+  for i in 0 ..< usernames.len:
+    whereClause.add("username = ? ")
+    if i != usernames.len - 1:
+      whereClause.add("or ")
+```
