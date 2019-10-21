@@ -217,4 +217,4 @@ Now gives a compile-time deprecation warning.
 shared_memory_race_condition.nim(6, 17) Warning: < is deprecated [Deprecated]
 ```
 
-This is easily fixed by changing `0 .. <x` to `0..<x` in the listing (no space between .. and <). Listing 6.23 and 6.26 have the exact same issue as they build upon listing 6.21.
+This is easily fixed by changing `0 .. <x` to `0..<x` or `0 ..< x` in the listing (no space between .. and <). Listing 6.23 and 6.26 have the exact same issue as they build upon listing 6.21.
