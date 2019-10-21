@@ -260,4 +260,11 @@ When you run nimble (v.0.11.0) that ships with Nim v.1.0.0, it'll ask you to cho
              hybrid
 ```
 
-The default selection for package type is `library` but if you select `binary`, the nimble file you get will already have a bin = @["Tweeter"] entry. Also, nimble now creates src/Tweeter.nim for you with some example code in it which is different from lowercase tweeter.nim that you create by hand in the book.
+The default selection for package type is `library` but if you select `binary`, the nimble file you get will already have a bin = @["Tweeter"] entry. Also, nimble now creates src/Tweeter.nim for you with some example code in it. This is different from lowercase tweeter.nim that you create by hand in the book.
+
+To avoid cognitive dissonance while following along with the book, here is what I did:
+
+- renamed Tweeter.nim to tweeter.nim
+- changed the auto-generated line `bin = @["Tweeter"]` to what's in the book, i.e. `bin = @[tweeter]`.
+
+With these changes, I was able to use the nimble command exactly as it is in the book: `nimble c -r src/tweeter` and move forward.
