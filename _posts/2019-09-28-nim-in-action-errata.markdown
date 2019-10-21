@@ -240,6 +240,8 @@ This is easily fixed by changing `0 .. <x` to `0..<x` or `0 ..< x` in the listin
 
 ## Chapter 7
 
+This is another pretty substantial chapter and walks us through creation of a web application with a sqlite database backend.
+
 ### Section 7.2
 
 #### Page 188
