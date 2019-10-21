@@ -236,4 +236,28 @@ Now gives a compile-time deprecation warning.
 shared_memory_race_condition.nim(6, 17) Warning: < is deprecated [Deprecated]
 ```
 
-This is easily fixed by changing `0 .. <x` to `0..<x` in the listing (no space between .. and <). Listing 6.23 and 6.26 have the exact same issue as they build upon listing 6.21.
+This is easily fixed by changing `0 .. <x` to `0..<x` or `0 ..< x` in the listing (no space between .. and <). Listing 6.23 and 6.26 have the exact same issue as they build upon listing 6.21.
+
+## Chapter 7
+
+### Section 7.2
+
+#### Page 188
+
+> You’ll also need to add bin = @["tweeter"] to the Tweeter.nimble file to let Nimble know which files in your package need to be compiled.
+
+When you run nimble (v.0.11.0) that ships with Nim v.1.0.0, it'll ask you to choose your package type:
+
+```
+    Prompt: Package type?
+        ... Library - provides functionality for other packages.
+        ... Binary  - produces an executable for the end-user.
+        ... Hybrid  - combination of library and binary
+        ... For more information see https://goo.gl/cm2RX5
+     Select Cycle with 'Tab', 'Enter' when done
+   Choices:  library
+           > binary <
+             hybrid
+```
+
+The default selection for package type is `library` but if you select `binary`, the nimble file you get will already have a bin = @["Tweeter"] entry. Also, nimble now creates src/Tweeter.nim for you with some example code in it which is different from lowercase tweeter.nim that you create by hand in the book.
