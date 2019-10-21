@@ -61,7 +61,7 @@ doAssert getUserCity(2) == "New York
 
 It might be confusing to see that the book uses `assert` for previous code snippets but for this one, suddenly switches to `doAssert`.
 
-The different between `assert` and `doAssert` is that `assert` is ignored by the nim compiler when using the `-d:release` or `--assertions:off` command line switches, whereas `doAssert` isn't affected by them. [Source](https://nim-lang.org/docs/assertions.html). This is also explained later in the book in Chapter 3 (page 76).
+The difference between `assert` and `doAssert` is that `assert` is ignored by the nim compiler when using the `-d:release` or `--assertions:off` command line switches, whereas `doAssert` isn't affected by them. [Source](https://nim-lang.org/docs/assertions.html). This is also explained later in the book in Chapter 3 (page 76).
 
 ### Section 2.3.1
 
@@ -117,7 +117,7 @@ assert list[0] == ""
 
 ## Chapter 3
 
-This chapter covers a *lot* of ground and by the end of it you have a working group chat server and a client that connects to it. I only ran into the follwing trivial issues.
+This chapter covers a *lot* of ground and by the end of it you have a working group chat server and a client that connects to it. I only ran into the following trivial issues.
 
 ### Listing 3.16
 
@@ -144,6 +144,25 @@ Error: execution of an external program failed: '/Users/deepakg/proj/async_file
 ```
 
 I still haven't figured out if the author deliberately intended to demonstrate something or if something changed in a version of Nim after the book came out. That said, the next listing (3.17) that uses the `{.async.}` pragma with the `await` keyword works just fine.
+
+### Listing 3.17
+
+```
+import asyncdispatch, asyncfile
+
+proc readFiles() {.async.} =
+  var file = openAsync("/home/profile/test.txt", fmReadWrite)
+  let data = await file.readAll()
+  echo(data)
+  await file.write("Hello!\n")
+  file.close()
+
+waitFor readFiles()
+```
+
+It might come as a surprise that the `echo(data)` call never prints anything, even when the file already exists and contains text. Additionally, the file contents are reset to `Hello!` after running the code.
+
+This is because `fmReadWrite` file mode clears the existing data during the `openAsync` call. If you want to preserve and display the file contents, use `fmReadWriteExisting` file mode instead.
 
 ### Section 3.5.3
 
