@@ -333,3 +333,26 @@ We've already encountered the first one before (listing 6.21), the second one ca
     if i != usernames.len - 1:
       whereClause.add("or ")
 ```
+
+### Listing 7.21
+
+#### Page 205
+
+The following code:
+
+```
+      <span>${message.time.getGMTime().format("HH:mm MMMM d',' yyyy")}</span>
+```
+
+now gives a deprecation warning:
+
+```
+src/views/user.nim(35, 52) Warning: getGMTime is deprecated [Deprecated]
+```
+
+Replacing `getGMTime` with `utc` fixes it.
+
+```
+      <span>${message.time.utc().format("HH:mm MMMM d',' yyyy")}</span>
+```
+
