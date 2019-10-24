@@ -356,3 +356,6 @@ Replacing `getGMTime` with `utc` fixes it.
       <span>${message.time.utc().format("HH:mm MMMM d',' yyyy")}</span>
 ```
 
+## Chapter 8
+
+This chapter explores Nim's Foreign Function Interface (FFI) and shows how you can easily wrap not just standard C library functions but also external C libraries. It concludes with a quick look at Nim's JavaScript backend that allows you to compile Nim code to JavaScript and interface with Browser's DOM. I did not run into any issues with this chapter.
