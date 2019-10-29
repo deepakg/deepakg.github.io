@@ -359,3 +359,43 @@ Replacing `getGMTime` with `utc` fixes it.
 ## Chapter 8
 
 This chapter explores Nim's Foreign Function Interface (FFI) and shows how you can easily wrap not just standard C library functions but also external C libraries. It concludes with a quick look at Nim's JavaScript backend that allows you to compile Nim code to JavaScript and interface with Browser's DOM. I did not run into any issues with this chapter.
+
+## Chapter 9
+
+This chapter is a tour of Nim's meta-programming capabilities.
+
+#### Page 250
+
+```
+import macros
+type
+  Person = object
+    name: string
+    age: int
+static:
+  for sym in getType(Person)[2]:
+    echo(sym.symbol)
+```
+
+Now produces a deprecation warning.
+
+```
+hello_meta.nim(10, 14) Warning: Deprecated since version 0.18.1; All functionality is defined on 'NimNode'.; symbol is deprecated [Deprecated]
+/usr/local/Cellar/nim/1.0.0/nim/lib/system.nim(3431, 32) Warning: Deprecated since version 0.18.1;o Use 'strVal' instead.; $ is deprecated [Deprecated]
+```
+
+I rewrote this snippet using the suggestions above and it compiled without issues.
+
+```
+import macros
+
+type
+  Person = object
+    name: string
+    age: int
+
+static:
+  for sym in getType(Person)[2]:
+    echo(sym.NimNode.strVal)
+
+```
