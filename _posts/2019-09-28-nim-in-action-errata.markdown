@@ -421,4 +421,27 @@ static:
     echo(sym.strVal)
 ```
 
+### Section 9.2
 
+#### Page 255
+
+This snippet fails to compile:
+
+```
+template `!=` (a, b: untyped) =
+  not (a == b)
+
+```
+
+```
+hello_template.nim(4, 12) Error: expression 'true' is of type 'bool' and has to be discarded
+```
+
+Adding an explicit `untyped` as the template's return type fixes it:
+
+```
+template `!=` (a, b: untyped): untyped =
+  not (a == b)
+
+doAssert(5 != 4)
+```
