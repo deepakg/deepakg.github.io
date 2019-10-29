@@ -431,6 +431,7 @@ This snippet fails to compile:
 template `!=` (a, b: untyped) =
   not (a == b)
 
+doAssert(5 != 4)
 ```
 
 ```
