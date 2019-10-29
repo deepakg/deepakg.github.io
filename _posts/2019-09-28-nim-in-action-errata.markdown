@@ -384,7 +384,7 @@ hello_meta.nim(10, 14) Warning: Deprecated since version 0.18.1; All functionali
 /usr/local/Cellar/nim/1.0.0/nim/lib/system.nim(3431, 32) Warning: Deprecated since version 0.18.1;o Use 'strVal' instead.; $ is deprecated [Deprecated]
 ```
 
-I rewrote this snippet using the suggestions above and it compiled without issues.
+Initially I wrote this snippet using the suggestions above and it compiled without warnings:
 
 ```
 import macros
@@ -399,3 +399,26 @@ static:
     echo(sym.NimNode.strVal)
 
 ```
+
+However, I did get a "Hint" during compilation:
+
+```
+hello_meta.nim(14, 13) Hint: conversion from NimNode to itself is pointless [ConvFromXtoItselfNotNeeded]
+```
+
+Which made me realise that `sym` here was already a NimNode. This was the final version of my code that produced no warnings on hints:
+
+```
+import macros
+
+type
+  Person = object
+    name: string
+    age: int
+
+static:
+  for sym in getType(Person)[2]:
+    echo(sym.strVal)
+```
+
+
