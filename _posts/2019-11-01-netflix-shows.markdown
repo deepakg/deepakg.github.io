@@ -117,7 +117,7 @@ While looking at the HTML source of the Content section, I realised that all sho
 </font>
 ```
 
-The use of `color:#1155cc` and `text-decoration:underline` attributes to make the text look like a link (cringeworthy, isn't it) is inconsistently[^2] used. Fortunately, the use of `font-style:italic` seems very consistent across several past quarters. I exploited this to extract show names from `content_html` that the `extract_content_section` function above returns:
+The use of `color:#1155cc` and `text-decoration:underline` attributes to make the text look like a link (cringeworthy, isn't it) is inconsistent[^2]. Fortunately, the use of `font-style:italic` seems very consistent across several past quarters. I exploited this to extract show names from `content_html` that the `extract_content_section` function above returns:
 
 ```
 def get_movies_html(doc):
