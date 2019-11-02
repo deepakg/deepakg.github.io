@@ -117,7 +117,7 @@ While looking at the HTML source of the Content section, I realised that all sho
 </font>
 ```
 
-The use of `color:#1155cc` and `text-decoration:underline` attributes to make the text look like a link (cringeworthy, isn't it) is relatively new and was very sparingly and inconsistently used in the past filings. Fortunately, the use of `font-style:italic` seems very consistent across several past quarters. I exploited this to extract show names from `content_html` that the `extract_content_section` function above returns:
+The use of `color:#1155cc` and `text-decoration:underline` attributes to make the text look like a link (cringeworthy, isn't it) is inconsistently[^2] used. Fortunately, the use of `font-style:italic` seems very consistent across several past quarters. I exploited this to extract show names from `content_html` that the `extract_content_section` function above returns:
 
 ```
 def get_movies_html(doc):
@@ -154,7 +154,7 @@ Gives:
 {'Sacred Games', 'The Naked Director', 'Sintonia'}
 ```
 
-Which indeed looks more realistic. I ran this on all the letters to investors filed this year by Netflix and generated a [webpage](https://www.deepakg.com/_assets/netflix_shows.html)[^2]. If you are browsing on a Desktop browser, you can hover over an individual show to see a tooltip with some additional context about it.
+Which indeed looks more realistic. I ran this on all the letters to investors filed this year by Netflix and generated a [webpage](https://www.deepakg.com/_assets/netflix_shows.html)[^3]. If you are browsing on a Desktop browser, you can hover over an individual show to see a tooltip with some additional context about it.
 
 ### Challenges
 
@@ -170,4 +170,6 @@ Though extremely narrow in scope, this exercise has given me a new-found appreci
 ---
 [^1]: As of this writing, their international subscriber count is roughly 1.6x more than their US subscriber count. And while their international margins are lower, thanks to the bigger user base, they've been earning more revenue internationally since Q4 2018. So while creation of non-English content might be motivated by revenue, it might also be driven by regulation (for example, see EU's [recent 30% content quota legislation](https://www.europarl.europa.eu/news/en/press-room/20180925IPR14307/new-rules-for-audiovisual-media-services-approved-by-parliament)).
 
-[^2]: I intend to go as far back as possible and update this page. Hopefully it lets you discover content you might not otherwise have come across!
+[^2]: This style is used when they want to link a show name to other content, e.g. a trailer on YouTube. In that sense this is a link but the link URL ends up as a footnote. It's probably done to make it easier to read these reports in print but a YouTube link there is pointless anyway.
+
+[^3]: I intend to go as far back as possible and update this page. Hopefully it lets you discover content you might not otherwise have come across!
