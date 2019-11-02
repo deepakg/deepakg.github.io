@@ -158,7 +158,7 @@ Which indeed looks more realistic. I ran this on all the letters to investors fi
 
 ### Challenges
 
-While currently the HTML parsing approach works reasonably well, I am afraid it is too tightly coupled with the current formatting conventions of the page. If they were to change the attribute or tags for highlighting shows, or worse, stop highlighting shows altogether this approach will stop working and might need something NLP based.
+While currently the HTML parsing approach works reasonably well, I am afraid it is too tightly coupled with the current formatting conventions of the page. If they were to change the attribute or tags for highlighting shows, or worse, stop highlighting shows altogether, this approach will stop working and might need something NLP based.
 
 ## Conclusion
 
