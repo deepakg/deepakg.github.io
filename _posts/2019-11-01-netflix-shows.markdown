@@ -14,7 +14,7 @@ While browsing through their past filings, I realised that Netflix now creates a
 ## Extracting the "Content" section
 While references to shows are scattered throughout Netflix's letter to the shareholders, most of them are concentrated in the Content section. I wanted to parse the HTML and extract the Content section for further processing. Unfortunately, the markup of these SEC filings tends to be quite poor with no hierarchy or semantic considerations. It's just full of a bunch of divs nested inside divs and font tags. For example:
 
-```
+```html
 <div style="line-height:120%;font-size:11pt;">
   <font style="font-family:Calibri,sans-serif;font-size:11pt;"><br/></font>
 </div>
@@ -58,7 +58,7 @@ The `extract_content_section` function returns a tuple of two strings - `content
 
 Natural Language Processing (NLP), like many fields, has been seeing a lot of breakthroughs driven by deep learning. Extracting TV shows and movie names seemed like a good problem for Named-entity Recognition using spaCy. I installed spaCy along with the pre-trained `en_core_web_lg` model (a whopping 789 MB as of v2.2.0) and wrote a quick function similar to one in spaCy [documentation](https://spacy.io/usage/linguistic-features#named-entities).
 
-```
+```python
 def get_movies_nlp(doc):
     import spacy
 
@@ -111,7 +111,7 @@ Both approaches sound time consuming and good outcomes seem far from uncertain. 
 
 While looking at the HTML source of the Content section, I realised that all show names were always wrapped in a `<font>` and carried a `font-style:italic` attribute:
 
-```
+```html
 <font style="font-family:Calibri,sans-serif;font-size:11pt;color:#1155cc;font-style:italic;text-decoration:underline;">
   Stranger Things
 </font>
@@ -119,7 +119,7 @@ While looking at the HTML source of the Content section, I realised that all sho
 
 The use of `color:#1155cc` and `text-decoration:underline` attributes to make the text look like a link (cringeworthy, isn't it) is inconsistent[^2]. Fortunately, the use of `font-style:italic` seems very consistent across several past quarters. I exploited this to extract show names from `content_html` that the `extract_content_section` function above returns:
 
-```
+```python
 def get_movies_html(doc):
     html = HTML(html=doc)
 
@@ -141,7 +141,7 @@ def get_movies_html(doc):
 
 Calling this function with the following HTML snippet:
 
-```
+```html
 <font style="font-family:Calibri,sans-serif;font-size:11pt;color:#1155cc;font-style:italic;text-decoration:underline;">Sintonia</font><font style="font-family:Calibri,sans-serif;font-size:11pt;"><sup style="vertical-align:top;line-height:120%;font-size:pt">4</sup></font><font style="font-family:Calibri,sans-serif;font-size:11pt;">, our latest Brazilian original, was the second most watched inaugural season in Brazil. </font>
 <font style="font-family:Calibri,sans-serif;font-size:11pt;color:#1155cc;font-style:italic;text-decoration:underline;">The Naked Director</font><font style="font-family:Calibri,sans-serif;font-size:11pt;"><sup style="vertical-align:top;line-height:120%;font-size:pt">5</sup></font><font style="font-family:Calibri,sans-serif;font-size:11pt;"> broke out as the biggest title launch for us in Japan and was also highly successful throughout Asia.
 Similarly, in India, we debuted the second season of </font><font style="font-family:Calibri,sans-serif;font-size:11pt;color:#1155cc;font-style:italic;text-decoration:underline;">Sacred Games</font><font style="font-family:Calibri,sans-serif;font-size:11pt;"><sup style="vertical-align:top;line-height:120%;font-size:pt">6</sup></font><font style="font-family:Calibri,sans-serif;font-size:11pt;">, our most watched show in India.
