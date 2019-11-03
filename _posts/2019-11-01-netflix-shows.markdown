@@ -24,7 +24,7 @@ While references to shows are scattered throughout Netflix's letter to the share
 
 Fortunately, the `requests_html` library was quite up to the task and with a little tinkering I was able to get the job done:
 
-```
+```python
 def extract_content_section(filepath):
     content_html = []
     content_txt = []
