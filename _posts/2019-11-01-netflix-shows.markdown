@@ -105,7 +105,7 @@ The corpus used for training the `en_core_web_lg` model is probably not a good f
 
 Another way forward could be to use [syntactic dependency parsing](https://spacy.io/usage/linguistic-features#dependency-parse) and then try and infer the names of shows from the structure of the sentence.
 
-Both approaches sound time consuming and good outcomes seem far from uncertain. I must qualify this by saying that I am not a practicing NLP professional, so if I am wrong or missing another approach, I'd be happy to be corrected (my email is at the bottom of this page)!
+Both approaches sound time consuming and good outcomes seem far from certain. I must qualify this by saying that I am not a practicing NLP professional, so if I am wrong or missing another approach, I'd be happy to be corrected (my email is at the bottom of this page)!
 
 ## The HTML parsing approach
 
