@@ -447,9 +447,9 @@ template `!=` (a, b: untyped): untyped =
 doAssert(5 != 4)
 ```
 
-## Listing 9.3
+### Listing 9.3
 
-### Page 263
+#### Page 263
 
 > The Nim AST for 5 * (5 + 10) displayed using an indentation-based format
 
