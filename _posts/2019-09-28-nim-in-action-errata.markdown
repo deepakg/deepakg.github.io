@@ -446,3 +446,37 @@ template `!=` (a, b: untyped): untyped =
 
 doAssert(5 != 4)
 ```
+
+## Listing 9.3
+
+### Page 263
+
+> The Nim AST for 5 * (5 + 10) displayed using an indentation-based format
+
+```
+StmtList
+  Infix
+    Ident !"*"
+    IntLit 5
+    Par
+      Infix
+        Ident !"+"
+        IntLit 5
+        IntLit 10
+```
+
+This looks a little different with Nim 1.0.0
+
+```
+StmtList
+  Infix
+    Ident "*"
+    IntLit 5
+    Par
+      Infix
+        Ident "+"
+        IntLit 5
+        IntLit 10
+```
+
+Note the missing exclamation signs after `Ident`.
