@@ -480,3 +480,37 @@ StmtList
 ```
 
 Note the missing exclamation signs after `Ident`.
+
+### Listing 9.6
+
+#### Page 269
+
+> Save this code into configurator.nim and compile the file. You’ll see the following among the output:
+
+```
+Ident !"MyAppConfig"
+StmtList
+  Call
+    Ident !"address"
+    StmtList
+      Ident !"string"
+  Call
+    Ident !"port"
+    StmtList
+	Ident !"int"
+```
+
+Again, the output looks a little different with Nim 1.0.0 (no `!` after Ident). I won't mention this specific issue any further.
+
+```
+Ident "MyAppConfig"
+StmtList
+  Call
+    Ident "address"
+    StmtList
+      Ident "string"
+  Call
+    Ident "port"
+    StmtList
+      Ident "int"
+```
